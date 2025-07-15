@@ -2,6 +2,7 @@ package Ejercicio1Herencia;
 
 import composicion.Habitacion;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public final class Casa extends InmuebleVivienda{
@@ -9,8 +10,8 @@ public final class Casa extends InmuebleVivienda{
 
     public Casa(){ }
 
-    public Casa(int identificacion, String direccion, double precio, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones, int nPlantasAltura) {
-        super(identificacion, direccion, precio, metros, nHabitaciones, nBanios, habitaciones);
+    public Casa(int identificacion, String direccion, double precioBase, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones, int nPlantasAltura) {
+        super(identificacion, direccion, precioBase, metros, nHabitaciones, nBanios, habitaciones);
         this.nPlantasAltura = nPlantasAltura;
     }
 
@@ -37,9 +38,15 @@ public final class Casa extends InmuebleVivienda{
 
     @Override
     public String toString() {
-
         return "Casa{" +
                 "nPlantasAltura=" + nPlantasAltura +
+                ", identificacionInmobiliario=" + identificacionInmobiliario +
+                ", direccion='" + direccion + '\'' +
+                ", precioBase=" + precioBase +
+                ", metrosCuadrado=" + metrosCuadrado +
+                ", habitaciones=" + Arrays.toString(habitaciones) +
+                ", nBanios=" + nBanios +
+                ", nHabitaciones=" + nHabitaciones +
                 '}';
     }
 }

@@ -8,16 +8,16 @@ public abstract sealed class Inmueble permits InmuebleVivienda, Local{
     // to be able to access them.
     protected int identificacionInmobiliario;
     protected String direccion;
-    protected double precioVenta;
+    protected double precioBase;
     protected double metrosCuadrado;
 
     // Empty constructor
     public Inmueble(){}
 
-    public Inmueble(int identificacion, String direccion, double precio, double metros){
+    public Inmueble(int identificacion, String direccion, double precioBase, double metros){
         this.identificacionInmobiliario = identificacion;
         this.direccion = direccion;
-        this.precioVenta = precio;
+        this.precioBase = precioBase;
         this.metrosCuadrado = metros;
     }
 
@@ -37,12 +37,12 @@ public abstract sealed class Inmueble permits InmuebleVivienda, Local{
         this.direccion = direccion;
     }
 
-    public double getPrecioVenta() {
-        return precioVenta;
+    public double getPrecioBase() {
+        return precioBase;
     }
 
-    public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
     }
 
     public double getMetrosCuadrado() {
@@ -53,16 +53,18 @@ public abstract sealed class Inmueble permits InmuebleVivienda, Local{
         this.metrosCuadrado = metrosCuadrado;
     }
 
+    public abstract double precioFinal();
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Inmueble inmueble = (Inmueble) o;
-        return identificacionInmobiliario == inmueble.identificacionInmobiliario && Double.compare(precioVenta, inmueble.precioVenta) == 0 && Double.compare(metrosCuadrado, inmueble.metrosCuadrado) == 0 && Objects.equals(direccion, inmueble.direccion);
+        return identificacionInmobiliario == inmueble.identificacionInmobiliario && Double.compare(precioBase, inmueble.precioBase) == 0 && Double.compare(metrosCuadrado, inmueble.metrosCuadrado) == 0 && Objects.equals(direccion, inmueble.direccion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(identificacionInmobiliario, direccion, precioVenta, metrosCuadrado);
+        return Objects.hash(identificacionInmobiliario, direccion, precioBase, metrosCuadrado);
     }
 
     @Override
@@ -70,7 +72,7 @@ public abstract sealed class Inmueble permits InmuebleVivienda, Local{
         return "Inmueble{" +
                 "identificacionInmobiliario=" + identificacionInmobiliario +
                 ", direccion='" + direccion + '\'' +
-                ", precioVenta=" + precioVenta +
+                ", precioVenta=" + precioBase +
                 ", metrosCuadrado=" + metrosCuadrado +
                 '}';
     }

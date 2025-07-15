@@ -5,13 +5,15 @@ import java.util.Objects;
 public final class Local extends Inmueble{
 
     private boolean tieneSalidaHumo;
+    private double porcentajePlusvalia;
 
     public Local(){}
 
-    public Local(int identificacion, String direccion, double precio,
-                 double metros, boolean salidaHumo) {
-        super(identificacion, direccion, precio, metros);
+    public Local(int identificacion, String direccion, double precioBase,
+                 double metros, boolean salidaHumo, double porcentajePlusvalia) {
+        super(identificacion, direccion, precioBase, metros);
         this.tieneSalidaHumo = salidaHumo;
+        this.porcentajePlusvalia = porcentajePlusvalia;
     }
 
     public boolean isTieneSalidaHumo() {
@@ -22,8 +24,20 @@ public final class Local extends Inmueble{
         this.tieneSalidaHumo = tieneSalidaHumo;
     }
 
-    public void precioFinal(int impuesto){
-        this.precioVenta = precioVenta + (precioVenta*(impuesto/100));
+    public double precioFinal(int impuesto){
+        return this.precioBase = precioBase + (precioBase *(impuesto/100));
+    }
+
+    public double getPorcentajePlusvalia() {
+        return porcentajePlusvalia;
+    }
+
+    public void setPorcentajePlusvalia(double porcentajePlusvalia) {
+        this.porcentajePlusvalia = porcentajePlusvalia;
+    }
+
+    public double precioFinal(){
+        return this.precioBase * (1 + this.getPorcentajePlusvalia());
     }
 
     @Override
@@ -45,7 +59,7 @@ public final class Local extends Inmueble{
                 "tieneSalidaHumo=" + tieneSalidaHumo +
                 ", identificacionInmobiliario=" + identificacionInmobiliario +
                 ", direccion='" + direccion + '\'' +
-                ", precioVenta=" + precioVenta +
+                ", precioVenta=" + precioBase +
                 ", metrosCuadrado=" + metrosCuadrado +
                 '}';
     }

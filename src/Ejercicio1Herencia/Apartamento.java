@@ -6,7 +6,7 @@ public final class Apartamento extends InmuebleVivienda{
 
     public Apartamento(){}
 
-    public Apartamento(int identificacion, String direccion, double precio, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones) {
-        super(identificacion, direccion, precio, metros, nHabitaciones, nBanios, habitaciones);
+    public Apartamento(int identificacion, String direccion, double precioBase, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones) {
+        super(identificacion, direccion, precioBase, metros, nHabitaciones, nBanios, habitaciones);
     }
 }

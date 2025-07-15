@@ -32,8 +32,8 @@ public abstract sealed class InmuebleVivienda extends Inmueble permits Casa, Apa
     }
 
 
-    public InmuebleVivienda(int identificacion, String direccion, double precio, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones){
-        super(identificacion,direccion,precio,metros);
+    public InmuebleVivienda(int identificacion, String direccion, double precioBase, double metros, int nHabitaciones, int nBanios, Habitacion[] habitaciones){
+        super(identificacion,direccion,precioBase,metros);
         this.nHabitaciones = nHabitaciones;
         this.nBanios = nBanios;
 
@@ -88,9 +88,10 @@ public abstract sealed class InmuebleVivienda extends Inmueble permits Casa, Apa
         }
     }
 
-    public void precioFinal(){
-        this.precioVenta = precioVenta + precioVenta*(21/100);
+    public double precioFinal(){
+        return this.precioBase * (1 + (IVA/100.0));
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -110,6 +111,10 @@ public abstract sealed class InmuebleVivienda extends Inmueble permits Casa, Apa
                 "nHabitaciones=" + nHabitaciones +
                 ", nBanios=" + nBanios +
                 ", habitaciones=" + Arrays.toString(habitaciones) +
+                ", identificacionInmobiliario=" + identificacionInmobiliario +
+                ", precioBase=" + precioBase +
+                ", metrosCuadrado=" + metrosCuadrado +
+                ", direccion='" + direccion + '\'' +
                 '}';
     }
 }
